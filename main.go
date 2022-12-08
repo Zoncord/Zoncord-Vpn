@@ -8,8 +8,8 @@ import (
 
 func main() {
 	conf.GenerateConfig()
-	startVpn := flag2.Bool("startVpn", false, "start vpn")
-	stopVpn := flag2.Bool("stopVpn", false, "stop vpn")
+	startVpn := flag2.Bool("start", false, "start vpn")
+	stopVpn := flag2.Bool("stop", false, "stop vpn")
 	flag2.Parse()
 
 	if *startVpn {
@@ -18,5 +18,4 @@ func main() {
 	if *stopVpn {
 		vpn.StopVpn()
 	}
-
 }

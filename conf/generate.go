@@ -11,6 +11,7 @@ import (
 func writeConf(data []byte) {
 	err := os.WriteFile("/etc/wireguard/zoncord.conf", data, 0644)
 	if err != nil {
+		fmt.Println("Config write Error")
 		log.Fatal(err)
 	}
 }
@@ -30,10 +31,13 @@ func GenerateConfig() {
 	switch system := runtime.GOOS; system {
 	case "darwin":
 		generateMac(bytes)
+		fmt.Println("Mac generation config")
 	case "linux":
 		generateLinux(bytes)
+		fmt.Println("Linux generation config")
 	case "windows":
 		generateWindows(bytes)
+		fmt.Println("Windows generation config")
 	}
 }
 
@@ -41,7 +45,7 @@ func generateLinux(data []byte) {
 	if _, err := os.Stat("/etc/wireguard/zoncord.conf"); err == nil {
 		fileContent, err := os.ReadFile("/etc/wireguard/zoncord.conf")
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("Config read Error")
 		}
 		if len(fileContent) == len(data) {
 			for i := 0; i < len(fileContent); i++ {
