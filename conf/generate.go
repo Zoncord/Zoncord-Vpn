@@ -38,6 +38,8 @@ func GenerateConfig() {
 	case "windows":
 		generateWindows(bytes)
 		fmt.Println("Windows generation config")
+	default:
+		fmt.Printf("Unrecognized os,system title: %s\n", system)
 	}
 }
 
@@ -51,14 +53,17 @@ func generateLinux(data []byte) {
 			for i := 0; i < len(fileContent); i++ {
 				if fileContent[i] != data[i] {
 					writeConf(data)
+					fmt.Println("Updated config")
 					break
 				}
 			}
 		} else {
 			writeConf(data)
+			fmt.Println("Wrote config")
 		}
 	} else {
 		writeConf(data)
+		fmt.Println("Wrote config")
 	}
 }
 
