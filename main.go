@@ -3,12 +3,20 @@ package main
 import (
 	"ZoncordId/conf"
 	"ZoncordId/vpn"
-	"time"
+	flag2 "flag"
 )
 
 func main() {
 	conf.GenerateConfig()
-	vpn.StartVpn()
-	time.Sleep(100)
-	vpn.StopVpn()
+	startVpn := flag2.Bool("startVpn", false, "start vpn")
+	stopVpn := flag2.Bool("stopVpn", false, "stop vpn")
+	flag2.Parse()
+
+	if *startVpn {
+		vpn.StartVpn()
+	}
+	if *stopVpn {
+		vpn.StopVpn()
+	}
+
 }
