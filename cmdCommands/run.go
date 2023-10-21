@@ -14,8 +14,7 @@ func Run(command string) {
 	err := cmd.Run()
 
 	if err != nil {
-		log.Fatal(err)
-		return
+		log.Fatalf("Command run error: %s", command)
 	}
 }
 func RunOutput(command string) {
@@ -24,7 +23,7 @@ func RunOutput(command string) {
 	output, err := cmd.Output()
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalf("Command run error: %s", command)
 		return
 	}
 	fmt.Println(output)
